@@ -26,7 +26,9 @@
   #----------------------------------#
   q = fql('Foo.all().toStream()')   <--- edit this
   ```
-5. To test locally: `python appserver.py`
+
+## Test it
+* `python appserver.py`
   ```
   > python appserver.py                                                    
   * Serving Flask app 'appserver'
@@ -35,6 +37,10 @@
   * Running on http://127.0.0.1:5000
   Press CTRL+C to quit  
   ```
-6. Make mutations to the set you are streaming (from step 4 above) and watch the stream events print out on the console
-7. Test the healthcheck: `curl --location 'http://127.0.0.1:5000/health'`
+* Make mutations to the set you are streaming (from step 4 above) and watch the stream events print out on the console
+* Test the healthcheck: `curl --location 'http://127.0.0.1:5000/health'`
    * Check the collection `healthcheck_ts` and verify there's a new document created with a `ping` and `stream_token` fields populated
+* Kill the appserver.py
+* Make some more mutations
+* Restart the appserver `python appserver.py`
+  * The mutations from the previous step would have streamed out upon startup
