@@ -11,7 +11,7 @@ In the illustrative example using ECS (or EKS) below, the service's healthcheck 
 1. Setup venv environment
   * `python3 -m venv venv`
   * `source venv/bin/activate`
-  * `pip install -r requirements`
+  * `pip install -r requirements.txt`
 2. Copy `.env.sample` into a new file called `.env` and provide a value for `FAUNA_SECRET`
 3. Create a collection in your database called `healthcheck_ts`. Use the schema definitions found in the sample [main.fsl](./main.fsl) file, i.e.
   ```
