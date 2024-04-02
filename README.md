@@ -1,6 +1,8 @@
 # Event Streaming sidecar for CDC
 
-This is sample code for how to build a restartable stream client without losing any events. Fauna event streams can be "restarted" with an old stream token using a backdated `start_ts` option (so long as the `start_ts` is > the stream token creation time). Using this feature, we simply have to store the timestamp of healthcheck ping and use it the latest value (to restart the Fauna event stream) in the event the server needs to be restarted.  
+This is sample code for how to build a restartable stream client without losing any events. Fauna event streams can be "restarted" with an old stream token using a backdated `start_ts` option (so long as the `start_ts` is > the stream token creation time). Using this feature, we simply have to store the timestamp of healthcheck pings and use it's latest value (to restart the Fauna event stream) in the event the server needs to be restarted.  
+
+In the illustrative example using ECS (or EKS) below, the service's healthcheck is pinging a `/health` endpoint implemented in [appserver.py](./appserver.py). If the task has stopped or exited on its own, or the underlying EC2 instance failed, etc. a new task will replace it. Upon startup, the program is designed to restart a Fauna stream using the last healthy ping timestamp.
 
 ![diagram](./images/EventStreamingSidecarCDC.png)
 
