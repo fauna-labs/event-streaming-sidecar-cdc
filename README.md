@@ -1,5 +1,7 @@
 # Event Streaming sidecar for CDC
 
+This is sample code for how to build a restartable stream client without losing any events. Fauna event streams can be "restarted" with an old stream token using a backdated `start_ts` option (so long as the `start_ts` is > the stream token creation time). Using this feature, we simply have to store the timestamp of healthcheck ping and use it the latest value (to restart the Fauna event stream) in the event the server needs to be restarted.  
+
 ![diagram](./images/EventStreamingSidecarCDC.png)
 
 
