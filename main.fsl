@@ -1,0 +1,11 @@
+collection healthcheck_ts {
+  history_days 0
+  ttl_days 1
+  index last_ping {
+    values [desc(.ping)]
+  }
+}
+
+collection Foo {
+  history_days 0
+}
