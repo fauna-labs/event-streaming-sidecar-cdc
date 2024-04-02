@@ -53,6 +53,11 @@ def do_stream():
     with stream_client.stream(StreamToken(stream_token), opts) as stream:
         for event in stream:
             try:
+                #--------------------------------------------------------#
+                # send these events to SNS, SQS, where you want them, etc.
+                #--------------------------------------------------------#
+              
+
                 print(event)
                 # access fields on the document
                 # print(event["data"].ts) # fauna provided top level fields
