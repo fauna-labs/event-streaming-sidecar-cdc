@@ -42,7 +42,10 @@ def do_stream():
             #----------------------------------#
             # your stream query here
             #----------------------------------#
-            q = fql('Foo.all().toStream()')
+            q = fql("""
+                    let s = Foo.where(.foo == "bar") { id, foo }
+                    s.toStream()
+                    """)
             res = stream_client.query(q)        
             stream_token = res.data.token
         except FaunaException as err:
